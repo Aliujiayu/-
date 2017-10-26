@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.box{
+			width: 1200px;
+			border: 1px solid aqua;
+			margin: 30px auto 30px;
+			padding: 20px 30px;
+			box-sizing: border-box;
+		}
+		.box>p{
+			padding-left: 50px;
+		}
+		.inp{
+			width: 1200px;
+			height: 30px;
+			background-color: lime;
+			margin: 0 auto;
+			padding: 15px 0;
+		}
+		input{
+			float: left;
+			outline: none;
+			height: 30px;
+			border: none;
+			margin-left: 35px;
+			padding-left: 10px;
+			font-size: 14px;
+		}
+		.name{
+			width: 250px;
+		}
+		.matter{
+			width: 650px;
+		}
+		.btn{
+			width: 50px;
+			height: 30px;
+			float: right;
+			margin-right: 70px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<div class="inp">
+		<input type="text" name="" placeholder="用户名" class="name">
+		<input type="text" name="" placeholder="内容" class="matter">
+		<button class="btn">提交</button>
+	</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:"http://localhost:3000/",
+			type:"POST",
+			data:{
+				name : $(".name").val(),
+				matter : $(".matter").val()
+			},
+			success:function (e) {
+				$(".btn").click(function(){
+					console.log(e);
+					$(".box").append("<h1>"+e.name+"</h1>"+"<p>"+e.matter+"</p>");
+				})
+			}
+		})
+	})
+</script>
+</html>
